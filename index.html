@@ -2150,15 +2150,14 @@
     <div class="docs-container">
         <h1 class="docs-title">API Documentation</h1>
         <p class="docs-description">
-            Welcome to the Go6 Mail API documentation. This API provides temporary email services with 
-            Discord verification URL extraction capabilities. All endpoints require authentication via API key.
+            Welcome to the Go6 Mail API documentation.
         </p>
 
         <div class="instructions-panel">
             <h3 class="instructions-title">
                 <i class="fas fa-server"></i> API Base URL
             </h3>
-            <p>All API endpoints must be accessed through our main API URL. Get the current VPS URL first:</p>
+            <p>Get the current VPS URL first:</p>
             
             <div class="code-block">
                 <pre><code>GET https://go6gen.pythonanywhere.com/vps_url
@@ -2183,7 +2182,7 @@ response = requests.post(f"{vps_url}/create", json={
 })</code></pre>
             </div>
             
-            <p><strong>Note:</strong> The VPS URL may change as we upgrade our infrastructure. Always fetch it from the main endpoint first.</p>
+            <p><strong>Note:</strong> The VPS URL may change as we change from VPS.</p>
         </div>
 
         <div class="endpoint-section">
@@ -2547,11 +2546,11 @@ Authorization: mysecretpassword123</code></pre>
                 </li>
                 <li>
                     <i class="fas fa-shield-alt"></i>
-                    <span>Keep your API key and inbox passwords secure. They cannot be recovered if lost.</span>
+                    <span>Keep your API key secure. They cannot be recovered if lost.</span>
                 </li>
                 <li>
                     <i class="fas fa-clock"></i>
-                    <span>Inboxes and emails are temporary and may be automatically cleaned up after some time.</span>
+                    <span>Inboxes and emails are forever, BUT may be automatically cleaned up after some time if theres no activity for a long time.</span>
                 </li>
                 <li>
                     <i class="fas fa-globe"></i>
@@ -2909,7 +2908,7 @@ function updateNavigation() {
         } catch (error) {
             console.error('Error fetching VPS URL:', error);
             showNotification('Unable to get VPS URL. Using fallback.', 'warning');
-            vpsUrl = 'https://go6gen.pythonanywhere.com';
+            vpsUrl = 'https://edge-explosion-cars-valuation.trycloudflare.com';
             return vpsUrl;
         }
     }
@@ -2924,7 +2923,7 @@ function updateNavigation() {
         const trimmedDomain = domain.trim().toLowerCase();
         
         if (trimmedDomain.includes('@')) {
-            return {valid: false, error: 'Enter domain only (e.g., example.com), not email address'};
+            return {valid: false, error: 'Enter domain only (example.com), not email address'};
         }
         
         if (trimmedDomain.includes(' ')) {
@@ -2937,12 +2936,12 @@ function updateNavigation() {
         
         const parts = trimmedDomain.split('.');
         if (parts.length < 2) {
-            return {valid: false, error: 'Domain must have at least one dot (e.g., example.com)'};
+            return {valid: false, error: 'Domain must have at least one dot (example.com)'};
         }
         
         const tld = parts[parts.length - 1];
         if (tld.length < 2) {
-            return {valid: false, error: 'Top-level domain (TLD) must be at least 2 characters'};
+            return {valid: false, error: 'must be at least 2 characters'};
         }
         
         return {valid: true, domain: trimmedDomain};
